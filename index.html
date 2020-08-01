@@ -33,7 +33,105 @@
 		<script src="/js/axios.min.js"></script>
 		<script src="/js/common.js"></script>
 	</head>
-	<body>
-		
+	<body class="search-page">
+			<div id="app" v-clock>
+		</div>
+			
 	</body>
+	<script>
+		new Vue({
+  el: '#app',
+  data: {
+    searchTxt: '',
+    isShowResult: false,
+    finished: true,  // 加载所有完成
+    loading: false,  // 加载商品
+    isFocus: false,
+    page: {         // 页码
+      timeLine: 0,
+      finish: false,
+      page: 10,
+    },
+    goodsList: [],
+    isLoaded: false,   // 是否加载过数据
+    tipsList: []
+  },
+  methods: {
+    // 输入框聚焦
+    focus: function () {
+      this.isFocus = true
+    },
+    // 输入框失焦
+    blur: function () {
+      this.isFocus = false
+    },
+    input: throttle(function (val) {
+      console.log(val)
+      console.log(this.isFocus)
+
+      this.tipsList = [
+        {
+          id: '234567',
+          tit: '百雀羚',
+        },
+        {
+          id: '2341567',
+          tit: '百雀羚旗舰店',
+        }
+      ]
+      if (this.isFocus && this.tipsList.length) {
+        this.isShowResult = false
+      }
+    }),
+    onSearch: throttle(function (val) {
+      this.isShowResult = true
+      this.getList(true)
+    }),
+    onCancel: function () {
+
+    },
+    // 获取列表
+    getList: function (init) {
+      if (init) {
+        this.page = {         // 页码
+          timeLine: 0,
+          finish: false,
+          page: 10,
+        }
+        this.goodsList = []
+      }
+      if (this.loading || this.page.finished) return;
+      this.loading = true
+      // const { page, list }: any = await apiFollow.getFans(data)
+      var mock = {
+        page: {},
+        list: [
+          {
+            tit: '日本进口微波炉专用微波炉蒸盒子热馒头蒸器微波盒蒸盖蒸碗耐高温',
+            src: "//gw.alicdn.com/bao/uploaded/i4/183212748/O1CN01XoJXJl1WAczpS0nPN_!!0-item_pic.jpg_500x500q90.jpg_.webp",
+            price: '123',
+            count: '146',
+          },
+          {
+            tit: '日本进口微波炉专用微波炉蒸盒子热馒头蒸器微波盒蒸盖蒸碗耐高温',
+            src: "//gw.alicdn.com/bao/uploaded/i4/183212748/O1CN01XoJXJl1WAczpS0nPN_!!0-item_pic.jpg_500x500q90.jpg_.webp",
+            price: '123',
+            count: '146',
+          },
+          {
+            tit: '日本进口微波炉专用微波炉蒸盒子热馒头蒸器微波盒蒸盖蒸碗耐高温',
+            src: "//gw.alicdn.com/bao/uploaded/i4/183212748/O1CN01XoJXJl1WAczpS0nPN_!!0-item_pic.jpg_500x500q90.jpg_.webp",
+            price: '123',
+            count: '146',
+          },
+        ]
+      }
+      this.loading = false
+      this.isLoaded = true   // 标记这列数据已经加载更新
+      this.page = mock.page
+      this.goodsList = mock.list
+    },
+  }
+})
+	</script>
 </html>
