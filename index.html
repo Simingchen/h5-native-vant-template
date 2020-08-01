@@ -1,15 +1,37 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="utf-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="renderer" content="webkit" />
-		<meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1" />
-		<meta content="zh-Hant" http-equiv="content-language" />
-		<title></title>
+		
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+		<meta content="telephone=no" name="format-detection">
+		<title>$!{pageTitle}</title>
+		<link rel="stylesheet" href="/css/vant.min.css" />
+		<link rel="stylesheet" href="/css/common.css" />
+		<script>
+		  // rem，375页面下 root字体 20px
+		  fontSize();
+		  window.onresize = function () {
+		    fontSize()
+		  };
+
+		  function fontSize() {
+		    var W = window.innerWidth;
+		    var htmlStyle = document.querySelector("html").style
+		    if (W > 640) {
+		      htmlStyle.fontSize = "28px";
+		      htmlStyle.background = "#fff"
+		    } else {
+		      htmlStyle.fontSize = W / 18.75 + "px"
+		    }
+		  }
+		</script>
+		<script src="/js/vue.min.js"></script>
+		<script src="/js/vant.min.js"></script>
+		<script src="/js/axios.min.js"></script>
+		<script src="/js/common.js"></script>
 	</head>
 	<body>
 		
